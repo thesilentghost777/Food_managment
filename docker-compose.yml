@@ -1,0 +1,99 @@
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: food-management-app
+    command: gunicorn --bind 0.0.0.0:5000 --timeout 120 --workers 2 wsgi:application
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=ae1f96e41c3d456cb0843a4c6bd25b2f38b7f24e2a8c1d9a6c5b9fbbf234a7ea
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=food_management
+      - DB_USER=ghost
+      - DB_PASSWORD=ghost
+      - DATABASE_URL=postgresql://ghost:ghost@postgres:5432/food_management
+    volumes:
+      - ./instance:/app/instance
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    networks:
+      - food-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: food-management-postgres
+    environment:
+      POSTGRES_DB: food_management
+      POSTGRES_USER: ghost
+      POSTGRES_PASSWORD: ghost
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    networks:
+      - food-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: food-management-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - food-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: food-management-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./static:/var/www/static:ro
+    depends_on:
+      - web
+    restart: unless-stopped
+    networks:
+      - food-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: food-management-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@foodmanagement.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    networks:
+      - food-network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  food-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

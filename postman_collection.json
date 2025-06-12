@@ -1,0 +1,296 @@
+{
+  "info": {
+    "name": "API Consommation et Allergies",
+    "description": "Collection pour tester les fonctionnalités de consommation et vérification d'allergies",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Créer une Personne (Prérequis)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jean Dupont\",\n  \"age\": 30,\n  \"sexe\": \"M\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/persons",
+          "host": ["{{base_url}}"],
+          "path": ["api", "persons"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Créer une Nourriture (Prérequis)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Pizza Margherita\",\n  \"description\": \"Pizza classique avec tomate, mozzarella et basilic\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/foods",
+          "host": ["{{base_url}}"],
+          "path": ["api", "foods"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Déclarer une Consommation SANS Problème",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "person_id",
+              "value": "1"
+            },
+            {
+              "key": "food_id",
+              "value": "1"
+            },
+            {
+              "key": "consumption_date",
+              "value": "2025-06-01T12:30"
+            },
+            {
+              "key": "notes",
+              "value": "Délicieuse pizza, aucun problème"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/consumptions/consumption/declare",
+          "host": ["{{base_url}}"],
+          "path": ["api", "consumptions", "consumption", "declare"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Déclarer une Consommation AVEC Problème",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "person_id",
+              "value": "1"
+            },
+            {
+              "key": "food_id",
+              "value": "1"
+            },
+            {
+              "key": "had_problem",
+              "value": "on"
+            },
+            {
+              "key": "problem_details",
+              "value": "Maux d'estomac 30 minutes après consommation"
+            },
+            {
+              "key": "severity_level",
+              "value": "moderate"
+            },
+            {
+              "key": "symptoms",
+              "value": "Nausées, crampes abdominales"
+            },
+            {
+              "key": "consumption_date",
+              "value": "2025-06-01T19:00"
+            },
+            {
+              "key": "notes",
+              "value": "Problème apparu rapidement"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/consumptions/consumption/declare",
+          "host": ["{{base_url}}"],
+          "path": ["api", "consumptions", "consumption", "declare"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Déclarer une Consommation AVEC Problème Sévère",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "person_id",
+              "value": "1"
+            },
+            {
+              "key": "food_id",
+              "value": "1"
+            },
+            {
+              "key": "had_problem",
+              "value": "on"
+            },
+            {
+              "key": "problem_details",
+              "value": "Réaction allergique sévère avec gonflement"
+            },
+            {
+              "key": "severity_level",
+              "value": "severe"
+            },
+            {
+              "key": "symptoms",
+              "value": "Gonflement du visage, difficultés respiratoires, urticaire"
+            },
+            {
+              "key": "consumption_date",
+              "value": "2025-06-01T20:30"
+            },
+            {
+              "key": "notes",
+              "value": "Urgence médicale nécessaire"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/consumptions/consumption/declare",
+          "host": ["{{base_url}}"],
+          "path": ["api", "consumptions", "consumption", "declare"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Consulter les Consommations d'une Personne",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/consumptions/consumption/view/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "consumptions", "consumption", "view", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Vérifier Probabilité d'Allergie (API JSON)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/consumptions/allergy/check/1/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "consumptions", "allergy", "check", "1", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8. Voir Résultat Allergie (HTML)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/consumptions/allergy/result/1/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "consumptions", "allergy", "result", "1", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "9. API Consommations JSON",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/consumptions/api/consumptions/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "consumptions", "api", "consumptions", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10. Lister toutes les Personnes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/persons",
+          "host": ["{{base_url}}"],
+          "path": ["api", "persons"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "11. Lister toutes les Nourritures",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/foods",
+          "host": ["{{base_url}}"],
+          "path": ["api", "foods"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

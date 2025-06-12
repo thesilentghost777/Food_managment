@@ -1,0 +1,599 @@
+{
+  "persons": [
+    {
+      "name": "Marie Dubois",
+      "age": 28,
+      "sexe": "F"
+    },
+    {
+      "name": "Jean Martin",
+      "age": 35,
+      "sexe": "M"
+    },
+    {
+      "name": "Sophie Leroy",
+      "age": 42,
+      "sexe": "F"
+    },
+    {
+      "name": "Pierre Moreau",
+      "age": 19,
+      "sexe": "M"
+    },
+    {
+      "name": "Emma Bernard",
+      "age": 31,
+      "sexe": "F"
+    },
+    {
+      "name": "Lucas Garcia",
+      "age": 27,
+      "sexe": "M"
+    },
+    {
+      "name": "Camille Petit",
+      "age": 24,
+      "sexe": "F"
+    }
+  ],
+
+  "foods": [
+    {
+      "name": "Pizza Margherita",
+      "description": "Pizza traditionnelle italienne avec tomate, mozzarella et basilic frais"
+    },
+    {
+      "name": "Salade César",
+      "description": "Salade romaine avec croûtons, parmesan, anchois et sauce César"
+    },
+    {
+      "name": "Burger au Bœuf",
+      "description": "Burger avec steak de bœuf, fromage cheddar, salade, tomate et sauce spéciale"
+    },
+    {
+      "name": "Sushi Saumon",
+      "description": "Assortiment de sushi et sashimi au saumon frais avec riz vinaigré"
+    },
+    {
+      "name": "Pasta Carbonara",
+      "description": "Pâtes italiennes avec œufs, parmesan, pancetta et poivre noir"
+    },
+    {
+      "name": "Cake au Chocolat",
+      "description": "Gâteau au chocolat noir avec glaçage chocolat et décoration"
+    },
+    {
+      "name": "Smoothie aux Fruits",
+      "description": "Mélange de fruits frais : banane, fraise, mangue et yaourt grec"
+    }
+  ],
+
+  "ingredients": [
+    {
+      "food_id": 1,
+      "name": "Farine de blé",
+      "description": "Farine T55 pour la pâte à pizza",
+      "is_allergen": true
+    },
+    {
+      "food_id": 1,
+      "name": "Mozzarella",
+      "description": "Fromage italien au lait de vache",
+      "is_allergen": true
+    },
+    {
+      "food_id": 1,
+      "name": "Tomate",
+      "description": "Sauce tomate fraîche",
+      "is_allergen": false
+    },
+    {
+      "food_id": 2,
+      "name": "Salade romaine",
+      "description": "Légume vert frais",
+      "is_allergen": false
+    },
+    {
+      "food_id": 2,
+      "name": "Anchois",
+      "description": "Filets d'anchois salés",
+      "is_allergen": true
+    },
+    {
+      "food_id": 3,
+      "name": "Bœuf haché",
+      "description": "Viande de bœuf hachée fraîche",
+      "is_allergen": false
+    },
+    {
+      "food_id": 3,
+      "name": "Pain burger",
+      "description": "Pain brioché avec graines de sésame",
+      "is_allergen": true
+    },
+    {
+      "food_id": 4,
+      "name": "Saumon",
+      "description": "Poisson frais d'élevage",
+      "is_allergen": true
+    },
+    {
+      "food_id": 5,
+      "name": "Œufs",
+      "description": "Œufs frais de poule",
+      "is_allergen": true
+    },
+    {
+      "food_id": 6,
+      "name": "Chocolat noir",
+      "description": "Chocolat à 70% de cacao",
+      "is_allergen": false
+    }
+  ],
+
+  "allergies": [
+    {
+      "person_id": 1,
+      "ingredient_id": 1
+    },
+    {
+      "person_id": 1,
+      "ingredient_id": 7
+    },
+    {
+      "person_id": 2,
+      "ingredient_id": 5
+    },
+    {
+      "person_id": 3,
+      "ingredient_id": 2
+    },
+    {
+      "person_id": 3,
+      "ingredient_id": 9
+    },
+    {
+      "person_id": 4,
+      "ingredient_id": 8
+    },
+    {
+      "person_id": 5,
+      "ingredient_id": 1
+    }
+  ],
+
+  "consumptions": [
+    {
+      "person_id": 1,
+      "food_id": 2,
+      "consumption_date": "2024-12-01T12:30:00",
+      "had_problem": false,
+      "problem_details": null,
+      "severity_level": null,
+      "symptoms": null,
+      "notes": "Repas agréable au restaurant"
+    },
+    {
+      "person_id": 1,
+      "food_id": 1,
+      "consumption_date": "2024-12-03T19:15:00",
+      "had_problem": true,
+      "problem_details": "Réaction allergique au gluten",
+      "severity_level": "moderate",
+      "symptoms": "Maux de ventre, ballonnements",
+      "notes": "A éviter à l'avenir"
+    },
+    {
+      "person_id": 2,
+      "food_id": 3,
+      "consumption_date": "2024-12-02T13:00:00",
+      "had_problem": false,
+      "problem_details": null,
+      "severity_level": null,
+      "symptoms": null,
+      "notes": "Très bon burger"
+    },
+    {
+      "person_id": 2,
+      "food_id": 2,
+      "consumption_date": "2024-12-04T12:45:00",
+      "had_problem": true,
+      "problem_details": "Allergie aux anchois",
+      "severity_level": "mild",
+      "symptoms": "Légères démangeaisons",
+      "notes": "Reaction légère mais notable"
+    },
+    {
+      "person_id": 3,
+      "food_id": 4,
+      "consumption_date": "2024-12-01T20:00:00",
+      "had_problem": false,
+      "problem_details": null,
+      "severity_level": null,
+      "symptoms": null,
+      "notes": "Excellent sushi"
+    },
+    {
+      "person_id": 3,
+      "food_id": 5,
+      "consumption_date": "2024-12-05T19:30:00",
+      "had_problem": true,
+      "problem_details": "Intolérance aux œufs",
+      "severity_level": "severe",
+      "symptoms": "Nausées importantes, vomissements",
+      "notes": "Réaction sévère, éviter absolument"
+    },
+    {
+      "person_id": 4,
+      "food_id": 6,
+      "consumption_date": "2024-12-03T16:00:00",
+      "had_problem": false,
+      "problem_details": null,
+      "severity_level": null,
+      "symptoms": null,
+      "notes": "Délicieux dessert"
+    },
+    {
+      "person_id": 5,
+      "food_id": 7,
+      "consumption_date": "2024-12-04T08:30:00",
+      "had_problem": false,
+      "problem_details": null,
+      "severity_level": null,
+      "symptoms": null,
+      "notes": "Petit-déjeuner sain"
+    }
+  ],
+
+  "individual_test_data": {
+    "single_person": {
+      "name": "Test User",
+      "age": 25,
+      "sexe": "M"
+    },
+    
+    "single_food": {
+      "name": "Plat Test",
+      "description": "Description du plat de test"
+    },
+    
+    "single_ingredient": {
+      "food_id": 1,
+      "name": "Ingrédient Test",
+      "description": "Description de l'ingrédient test",
+      "is_allergen": true
+    },
+    
+    "single_allergy": {
+      "person_id": 1,
+      "ingredient_id": 1
+    },
+    
+    "single_consumption": {
+      "person_id": 1,
+      "food_id": 1,
+      "consumption_date": "2024-12-06T14:00:00",
+      "had_problem": false,
+      "problem_details": null,
+      "severity_level": null,
+      "symptoms": null,
+      "notes": "Test de consommation"
+    }
+  },
+
+  "update_test_data": {
+    "person_update": {
+      "name": "Marie Dubois Modifiée",
+      "age": 29,
+      "sexe": "F"
+    },
+    
+    "food_update": {
+      "name": "Pizza Margherita Spéciale",
+      "description": "Pizza traditionnelle italienne avec tomate, mozzarella, basilic frais et origan"
+    },
+    
+    "consumption_with_problem": {
+      "person_id": 1,
+      "food_id": 1,
+      "consumption_date": "2024-12-07T18:00:00",
+      "had_problem": true,
+      "problem_details": "Réaction allergique légère",
+      "severity_level": "mild",
+      "symptoms": "Légers picotements",
+      "notes": "Première réaction observée"
+    }
+  }
+}
+
+
+# Jeux de données pour tests Postman
+
+## 📅 Module de Planification de Repas (`WeeklyMealPlan`)
+
+### Jeu de données 1 - Planification basique de Marie
+**POST** `http://localhost:5000/api/meal-planning/`
+```json
+{
+    "person_id": 1,
+    "week_start_date": "2025-06-09",
+    "day_of_week": 1,
+    "meal_type": "breakfast",
+    "food_id": 1,
+    "quantity": 1,
+    "notes": "Ndolé pour commencer la semaine"
+}
+```
+
+### Jeu de données 2 - Déjeuner du mardi
+**POST** `http://localhost:5000/api/meal-planning/`
+```json
+{
+    "person_id": 1,
+    "week_start_date": "2025-06-09",
+    "day_of_week": 2,
+    "meal_type": "lunch",
+    "food_id": 2,
+    "quantity": 2,
+    "notes": "Eru partagé avec un collègue"
+}
+```
+
+### Jeu de données 3 - Dîner du mercredi
+**POST** `http://localhost:5000/api/meal-planning/`
+```json
+{
+    "person_id": 1,
+    "week_start_date": "2025-06-09",
+    "day_of_week": 3,
+    "meal_type": "dinner",
+    "food_id": 3,
+    "quantity": 1,
+    "notes": "Poulet DG pour recevoir des invités"
+}
+```
+
+### Jeu de données 4 - Collation du jeudi
+**POST** `http://localhost:5000/api/meal-planning/`
+```json
+{
+    "person_id": 2,
+    "week_start_date": "2025-06-09",
+    "day_of_week": 4,
+    "meal_type": "snack",
+    "food_id": 4,
+    "quantity": 1,
+    "notes": "Koki comme en-cas de l'après-midi"
+}
+```
+
+### Jeu de données 5 - Dîner du vendredi
+**POST** `http://localhost:5000/api/meal-planning/`
+```json
+{
+    "person_id": 2,
+    "week_start_date": "2025-06-09",
+    "day_of_week": 5,
+    "meal_type": "dinner",
+    "food_id": 5,
+    "quantity": 3,
+    "notes": "Achu pour la famille (3 portions)"
+}
+```
+
+### Jeu de données 6 - Weekend planning
+**POST** `http://localhost:5000/api/meal-planning/`
+```json
+{
+    "person_id": 1,
+    "week_start_date": "2025-06-09",
+    "day_of_week": 6,
+    "meal_type": "lunch",
+    "food_id": 1,
+    "quantity": 4,
+    "notes": "Ndolé pour le déjeuner en famille du samedi"
+}
+```
+
+### Jeu de données 7 - Dimanche special
+**POST** `http://localhost:5000/api/meal-planning/`
+```json
+{
+    "person_id": 1,
+    "week_start_date": "2025-06-09",
+    "day_of_week": 7,
+    "meal_type": "lunch",
+    "food_id": 3,
+    "quantity": 2,
+    "notes": "Poulet DG pour le déjeuner dominical"
+}
+```
+
+---
+
+## 🎉 Module de Gestion de Buffet (`CeremonyBuffet`)
+
+### Jeu de données 1 - Mariage traditionnel
+**POST** `http://localhost:5000/api/ceremony-buffet/`
+```json
+{
+    "ceremony_name": "Mariage Traditionnel Bamiléké",
+    "ceremony_date": "2025-07-20 14:00:00",
+    "organizer_person_id": 1,
+    "expected_guests": 200,
+    "location": "Centre culturel Bafoussam",
+    "budget": 800000,
+    "food_id": 1,
+    "quantity_needed": 15,
+    "cost_per_unit": 25000,
+    "special_requirements": "Éviter les arachides - plusieurs invités allergiques",
+    "supplier_info": "Traiteur Mama Solange - Tel: 677554433",
+    "notes": "Prévoir des boissons traditionnelles aussi"
+}
+```
+
+### Jeu de données 2 - Baptême
+**POST** `http://localhost:5000/api/ceremony-buffet/`
+```json
+{
+    "ceremony_name": "Baptême de petit Emmanuel",
+    "ceremony_date": "2025-06-28 11:30:00",
+    "organizer_person_id": 2,
+    "expected_guests": 80,
+    "location": "Paroisse Saint-Michel Yaoundé",
+    "budget": 300000,
+    "food_id": 3,
+    "quantity_needed": 8,
+    "cost_per_unit": 18000,
+    "special_requirements": "Menu adapté aux enfants",
+    "supplier_info": "Restaurant Chez Tantine - Tel: 694223344",
+    "notes": "Prévoir des portions enfants et adultes"
+}
+```
+
+### Jeu de données 3 - Funérailles
+**POST** `http://localhost:5000/api/ceremony-buffet/`
+```json
+{
+    "ceremony_name": "Cérémonie d'hommage à Papa Martin",
+    "ceremony_date": "2025-07-05 16:00:00",
+    "organizer_person_id": 1,
+    "expected_guests": 350,
+    "location": "Domicile familial Douala",
+    "budget": 600000,
+    "food_id": 2,
+    "quantity_needed": 25,
+    "cost_per_unit": 12000,
+    "special_requirements": "Repas simple et traditionnel",
+    "supplier_info": "Groupe des femmes du quartier",
+    "notes": "Ceremony solennelle - repas sobre"
+}
+```
+
+### Jeu de données 4 - Anniversaire d'entreprise
+**POST** `http://localhost:5000/api/ceremony-buffet/`
+```json
+{
+    "ceremony_name": "10 ans de l'entreprise TechCam",
+    "ceremony_date": "2025-08-15 18:30:00",
+    "organizer_person_id": 2,
+    "expected_guests": 120,
+    "location": "Hôtel Hilton Yaoundé",
+    "budget": 1200000,
+    "food_id": 3,
+    "quantity_needed": 12,
+    "cost_per_unit": 35000,
+    "special_requirements": "Menu professionnel avec options végétariennes",
+    "supplier_info": "Catering Service Hilton",
+    "notes": "Événement corporate - présentation soignée"
+}
+```
+
+### Jeu de données 5 - Fête traditionnelle
+**POST** `http://localhost:5000/api/ceremony-buffet/`
+```json
+{
+    "ceremony_name": "Fête des moissons du village",
+    "ceremony_date": "2025-09-10 12:00:00",
+    "organizer_person_id": 1,
+    "expected_guests": 500,
+    "location": "Place du marché Mbankomo",
+    "budget": 450000,
+    "food_id": 5,
+    "quantity_needed": 40,
+    "cost_per_unit": 8000,
+    "special_requirements": "Repas 100% traditionnel",
+    "supplier_info": "Coopérative des femmes du village",
+    "notes": "Fête communautaire - grande quantité"
+}
+```
+
+### Jeu de données 6 - Remise de diplômes
+**POST** `http://localhost:5000/api/ceremony-buffet/`
+```json
+{
+    "ceremony_name": "Graduation Université de Yaoundé I",
+    "ceremony_date": "2025-07-30 17:00:00",
+    "organizer_person_id": 2,
+    "expected_guests": 250,
+    "location": "Amphithéâtre 750 UY1",
+    "budget": 900000,
+    "food_id": 4,
+    "quantity_needed": 20,
+    "cost_per_unit": 22000,
+    "special_requirements": "Finger food et cocktail",
+    "supplier_info": "Catering Université",
+    "notes": "Événement académique formel"
+}
+```
+
+### Jeu de données 7 - Fête d'anniversaire
+**POST** `http://localhost:5000/api/ceremony-buffet/`
+```json
+{
+    "ceremony_name": "60 ans de Maman Célestine",
+    "ceremony_date": "2025-06-25 15:00:00",
+    "organizer_person_id": 1,
+    "expected_guests": 150,
+    "location": "Salle paroissiale Biyem Assi",
+    "budget": 400000,
+    "food_id": 1,
+    "quantity_needed": 12,
+    "cost_per_unit": 15000,
+    "special_requirements": "Menu adapté aux personnes âgées",
+    "supplier_info": "Les filles de Maman Célestine",
+    "notes": "Fête familiale chaleureuse"
+}
+```
+
+---
+
+## 🔄 Données pour tester les modifications (PUT)
+
+### Modification d'un plan de repas
+**PUT** `http://localhost:5000/api/meal-planning/1`
+```json
+{
+    "quantity": 3,
+    "notes": "Quantité augmentée car invités surprise",
+    "is_prepared": true
+}
+```
+
+### Modification d'une cérémonie
+**PUT** `http://localhost:5000/api/ceremony-buffet/1`
+```json
+{
+    "expected_guests": 220,
+    "quantity_needed": 16,
+    "cost_per_unit": 24000,
+    "special_requirements": "Éviter arachides ET fruits de mer",
+    "is_confirmed": true,
+    "notes": "Mise à jour après confirmation finale des invités"
+}
+```
+
+---
+
+## 📊 Données pour marquer des repas comme préparés
+**POST** `http://localhost:5000/api/meal-planning/person/1/mark-prepared`
+```json
+{
+    "meal_plan_ids": [1, 2, 3]
+}
+```
+
+---
+
+## 🎯 Ordre de test recommandé
+
+1. **Créez d'abord quelques personnes** (avec l'API existante)
+2. **Testez les planifications de repas** avec les 7 jeux de données
+3. **Récupérez la planification hebdomadaire** 
+4. **Générez une liste de courses**
+5. **Créez les buffets de cérémonie** avec les 7 jeux de données
+6. **Testez les modifications** avec les données PUT
+7. **Confirmez quelques cérémonies**
+8. **Consultez l'analyse budgétaire**
+
+

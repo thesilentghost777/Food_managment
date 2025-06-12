@@ -1,0 +1,307 @@
+###############################Person################################################
+Test création d'une personne
+
+->POST http://localhost:5000/api/persons/
+{
+  "name": "Signe fongang",
+  "age": 18,
+  "sexe": "male"
+}
+
+->récupération de toutes les personnes:
+
+GET http://localhost:5000/api/persons/
+
+-> Test mise à jour d'une personne (ID 4):"
+
+PUT http://localhost:5000/api/persons/4
+{
+  "name": "Signe fongang",
+  "age": 19,
+  "sexe": "male"
+}
+
+-> Test suppression d'une personne (ID 4):"
+DELETE http://localhost:5000/api/persons/4
+
+->Test récupération d'une personne spécifique (ID 1):"
+GET http://localhost:5000/api/persons/1
+
+###################food####################################################################
+
+-> Test création d'un aliment
+
+POST http://localhost:5000/api/foods/
+{"name": "Thieboudienne", "description": "Plat national du Sénégal à base de riz et poisson"}
+
+->Test récupération de tous les aliments:"
+GET http://localhost:5000/api/foods/
+
+-> Test mise a jour d'un aliment d'id 1
+
+PUT http://localhost:5000/api/foods/1
+{"name": "Thieboudienne", "description": "Plat national du Sénégal à base de riz et poulet"}
+
+->suppression d'un aliment d'id 4
+DELETE http://localhost:5000/api/foods/4
+
+->Test de recuperation des ingrédients d'un aliment (ID 2):"
+GET http://localhost:5000/api/foods/2/ingredients
+
+
+####################################ingredient###################################################
+
+-> Test création d'un ingrédient pour la nouritture d'id 2:"
+POST http://localhost:5000/api/ingredients/
+
+   {"food_id": 2, "name": "Poisson", "description": "Poisson frais", "is_allergen": true}
+
+->Test récupération de tous les ingrédients
+
+GET http://localhost:5000/api/ingredients/
+
+-> Test update d'un ingrédient d'id 2"
+POST http://localhost:5000/api/ingredients/2
+
+   {"food_id": 2, "name": "Poisson", "description": "Poisson fummer", "is_allergen": true}
+
+-> Test suppression d'un ingrédient d'id 2:"
+DELETE http://localhost:5000/api/ingredients/2
+
+#################################Allergies_par_ingredient###########################################
+->Test création d'une allergie pour une personne d'id 3 et l'ingredient 3:"
+POST http://localhost:5000/api/allergies/
+	{"person_id": 3, "ingredient_id": 3}
+
+->Test récupération de toutes les allergies:"
+Get http://localhost:5000/api/allergies/
+
+->Test des allergies d'une personne (ID 3):"
+GET http://localhost:5000/api/persons/3/allergies
+
+
+#################################consomation_et_allergie_par_probabiliter#################################
+->Déclarer une nouvelle consommation pour une personne d'id 1 et l'aliment d'id 2
+
+POST http://localhost:5000/api/consumptions/declare
+
+POST http://localhost:5000/api/consumptions/declare
+Content-Type: application/json
+
+{
+  "person_id": 1,
+  "food_id": 2,
+  "had_problem": true,
+  "problem_details": "Réaction allergique légère",
+  "severity_level": "mild",
+  "symptoms": "Rougeurs sur les bras, légères démangeaisons",
+  "notes": "Réaction apparue 30 minutes après consommation",
+  "consumption_date": "2024-12-01T14:30:00"
+}
+
+->Consulter les consommations d'une personne d'id 1
+
+GET http://localhost:5000/api/consumptions/view/1
+
+->1.2 Déclarer une consommation sans problème
+
+POST http://localhost:5000/api/consumption/declare
+
+Content-Type: application/json
+
+{
+  "person_id": 1,
+  "food_id": 3,
+  "had_problem": false,
+  "notes": "Aucun problème, très bon goût"
+}
+
+->PUT - Mettre à jour une consommation
+PUT http://localhost:5000/api/consumptions/update/1
+Content-Type: application/json
+
+{
+  "had_problem": true,
+  "problem_details": "Mise à jour : réaction plus forte que prévu",
+  "severity_level": "moderate",
+  "symptoms": "Rougeurs étendues, démangeaisons importantes",
+  "notes": "Réaction évoluée dans les heures suivantes"
+}
+
+->Supprimer une consommation
+
+DELETE http://localhost:5000/api/consumptions/delete/1
+
+
+->2. VÉRIFICATION DES ALLERGIES entre une personne et une nourriture
+
+POST http://localhost:5000/api/consumptions/allergy/check
+Content-Type: application/json
+
+{
+  "person_id": 1,
+  "food_id": 2
+}
+
+-> Vérification détaillée avec historique
+
+POST http://localhost:5000/api/consumptions/allergy/detailed-check
+Content-Type: application/json
+
+{
+  "person_id": 1,
+  "food_id": 2
+}
+
+
+
+###############################Module de Planification de Repas (`/api/meal-planning`)
+# Requêtes Postman pour les nouveaux modules
+
+## Module de Planification de Repas (`/api/meal-planning`)
+
+### 1. Créer un plan de repas
+**POST** `http://localhost:5000/api/meal-planning/`
+```json
+{
+    "person_id": 1,
+    "week_start_date": "2025-06-09",
+    "day_of_week": 1,
+    "meal_type": "lunch",
+    "food_id": 1,
+    "quantity": 2,
+    "notes": "Repas du lundi midi"
+}
+```
+
+### 2. Récupérer la planification hebdomadaire
+**GET** `http://localhost:5000/api/meal-planning/person/1/week/2025-06-09`
+
+### 3. Modifier un plan de repas
+**PUT** `http://localhost:5000/api/meal-planning/1`
+```json
+{
+    "quantity": 3,
+    "notes": "Quantité augmentée",
+    "is_prepared": true
+}
+```
+
+### 4. Supprimer un plan de repas
+**DELETE** `http://localhost:5000/api/meal-planning/1`
+
+### 5. Générer une liste de courses
+**GET** `http://localhost:5000/api/meal-planning/person/1/shopping-list/2025-06-09`
+
+### 6. Marquer des repas comme préparés
+**POST** `http://localhost:5000/api/meal-planning/person/1/mark-prepared`
+```json
+{
+    "meal_plan_ids": [1, 2, 3]
+}
+```
+
+---
+
+## Module de Gestion de Buffet de Cérémonie (`/api/ceremony-buffet`)
+
+### 1. Créer un buffet de cérémonie
+**POST** `http://localhost:5000/api/ceremony-buffet/`
+```json
+{
+    "ceremony_name": "Mariage de Paul et Marie",
+    "ceremony_date": "2025-07-15 18:00:00",
+    "organizer_person_id": 1,
+    "expected_guests": 150,
+    "location": "Salle des fêtes Yaoundé",
+    "budget": 500000,
+    "food_id": 1,
+    "quantity_needed": 10,
+    "cost_per_unit": 15000,
+    "special_requirements": "Pas d'arachides - invités allergiques",
+    "supplier_info": "Restaurant Chez Mama Ngozi",
+    "notes": "Prévoir des alternatives végétariennes"
+}
+```
+
+### 2. Récupérer toutes les cérémonies
+**GET** `http://localhost:5000/api/ceremony-buffet/`
+
+### 3. Récupérer les détails d'une cérémonie
+**GET** `http://localhost:5000/api/ceremony-buffet/1`
+
+### 4. Modifier un buffet de cérémonie
+**PUT** `http://localhost:5000/api/ceremony-buffet/1`
+```json
+{
+    "expected_guests": 180,
+    "quantity_needed": 12,
+    "cost_per_unit": 14000,
+    "special_requirements": "Pas d'arachides et pas de fruits de mer",
+    "is_confirmed": true
+}
+```
+
+### 5. Supprimer un buffet de cérémonie
+**DELETE** `http://localhost:5000/api/ceremony-buffet/1`
+
+### 6. Récupérer les cérémonies d'un organisateur
+**GET** `http://localhost:5000/api/ceremony-buffet/organizer/1`
+
+### 7. Analyse budgétaire des cérémonies
+**GET** `http://localhost:5000/api/ceremony-buffet/budget-analysis`
+
+### 8. Confirmer une cérémonie
+**POST** `http://localhost:5000/api/ceremony-buffet/1/confirm`
+
+---
+
+## Requêtes pour tester les scénarios complets
+
+### Scénario 1: Planification complète d'une semaine
+1. **Créer plusieurs repas pour une semaine**
+   - Lundi petit-déjeuner: POST avec `day_of_week: 1, meal_type: "breakfast"`
+   - Lundi déjeuner: POST avec `day_of_week: 1, meal_type: "lunch"`
+   - Mardi dîner: POST avec `day_of_week: 2, meal_type: "dinner"`
+
+2. **Récupérer la planification complète**
+   - GET `person/1/week/2025-06-09`
+
+3. **Générer la liste de courses**
+   - GET `person/1/shopping-list/2025-06-09`
+
+### Scénario 2: Gestion complète d'une cérémonie
+1. **Créer la cérémonie** (POST avec tous les détails)
+2. **Voir l'analyse des allergènes** (GET détails de la cérémonie)
+3. **Modifier selon les contraintes** (PUT pour ajuster)
+4. **Confirmer la cérémonie** (POST confirm)
+5. **Analyser les coûts** (GET budget-analysis)
+
+### Scénario 3: Test des alertes d'allergies
+1. **Créer une personne avec des allergies** (via l'API allergies existante)
+2. **Planifier un repas avec des allergènes** 
+   - La réponse devrait inclure un warning sur les allergènes
+3. **Créer un buffet avec des allergènes**
+   - Les détails devraient montrer l'analyse des allergènes potentiels
+
+---
+
+## Headers à utiliser pour toutes les requêtes
+```
+Content-Type: application/json
+Accept: application/json
+```
+
+## Codes de réponse attendus
+- **201**: Création réussie
+- **200**: Opération réussie
+- **400**: Erreur de validation des données
+- **404**: Ressource non trouvée
+- **500**: Erreur serveur
+
+## Notes importantes pour les tests
+1. Assurez-vous d'avoir des personnes créées avant de tester les planifications
+2. Assurez-vous d'avoir des aliments créés avant de les utiliser dans les plans
+3. Les dates doivent être au format ISO (YYYY-MM-DD pour les dates, YYYY-MM-DD HH:MM:SS pour les datetime)
+4. Les `day_of_week` vont de 1 (Lundi) à 7 (Dimanche)
+5. Les `meal_type` acceptés sont: "breakfast", "lunch", "dinner", "snack"
