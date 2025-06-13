@@ -66,7 +66,7 @@ Cette application s'inscrit dans le cadre des Objectifs de Développement Durabl
 
 ### 1. Cloner le Projet
 ```bash
-git clone <url-du-repo>
+git clone https://github.com/thesilentghost777/Food_managment.git
 cd food-management-app
 ```
 
@@ -416,7 +416,7 @@ ports:
 ### Développement Local
 ```bash
 # Cloner le projet
-git clone <url>
+git clone https://github.com/thesilentghost777/Food_managment.git
 cd food-management-app
 
 # Développement sans Docker
